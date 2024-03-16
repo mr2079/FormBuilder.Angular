@@ -2,68 +2,76 @@
   <div class="d-flex">
     <div class="" style="min-width: 400px">
 
-      <form [formGroup]="myFormCreateForm" (submit)="createForm()">
-      <div class="card w-100" [ngClass]="myForm ? 'blur' : ''" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title m-0">ایجاد فرم جدید</h5>
-        </div>
+      <form [formGroup]="myFormCreateForm" (ngSubmit)="createForm()">
+        <div class="card w-100" [ngClass]="myForm ? 'blur' : ''" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title m-0">ایجاد فرم جدید</h5>
+          </div>
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="">
-              <label class="form-label">عنوان فرم</label>
-              <input formControlName="formTitle" class="form-control" placeholder="عنوان فرم را وارد کنید"/>
-            </div>
-          </li>
-        </ul>
-        <div class="card-footer">
-          <button [disabled]="myForm || !myFormCreateForm.valid" type="submit" class="btn btn-success float-end">افزودن</button>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="">
+                <label class="form-label">عنوان فرم</label>
+                <input formControlName="formTitle" class="form-control" placeholder="عنوان فرم را وارد کنید"/>
+              </div>
+            </li>
+          </ul>
+          <div class="card-footer">
+            <button [disabled]="myForm || !myFormCreateForm.valid" type="submit" class="btn btn-success float-end">
+              افزودن
+            </button>
+          </div>
         </div>
-      </div>
       </form>
 
+      <form [formGroup]="myFormCreateFormControl" (ngSubmit)="createFormControl()">
+        <div class="card w-100 mt-3" [ngClass]="!myForm ? 'blur' : ''" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">ایجاد بخش جدید</h5>
+            <p style="font-size: 12px" class="card-text">element جدیدی را به فرم خود اضافه کنید</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
 
-      <div class="card w-100 mt-3" [ngClass]="!myForm ? 'blur' : ''" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">ایجاد بخش جدید</h5>
-          <p style="font-size: 12px" class="card-text">element جدیدی را به فرم خود اضافه کنید</p>
+              <div class="">
+                <label class="form-label">نام فارسی</label>
+                <input formControlName="label" class="form-control" placeholder="نام فارسی را وارد کنید"/>
+              </div>
+              <div class="mt-2">
+                <label class="form-label">نام انگلیسی</label>
+                <input formControlName="name" class="form-control" placeholder="نام انگلیسی را وارد کنید"/>
+              </div>
+              <div class="mt-2">
+                <label class="form-label">نوع</label>
+                <select formControlName="type" class="form-select" aria-label="Default select example">
+                  <option selected ngValue="text">متن</option>
+                  <option ngValue="number">عدد</option>
+                  <option ngValue="password">کلمه عبور</option>
+                  <option ngValue="date">تاریخ</option>
+                  <option ngValue="time">زمان</option>
+                  <option ngValue="checkbox">چک باکس</option>
+                  <option ngValue="email">پست الکترونیکی</option>
+                  <option ngValue="file">فایل</option>
+                </select>
+              </div>
+
+            </li>
+          </ul>
+          <div class="card-footer">
+<!--            [disabled]="!myForm || !myFormCreateFormControl.invalid"-->
+            <button  type="submit"
+                    class="btn btn-success float-end">افزودن
+            </button>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
+      </form>
 
-            <div class="">
-              <label class="form-label">نام فارسی</label>
-              <input [disabled]="!myForm" class="form-control" placeholder="نام فارسی را وارد کنید"/>
-            </div>
-            <div class="mt-2">
-              <label class="form-label">نام انگلیسی</label>
-              <input [disabled]="!myForm" class="form-control" placeholder="نام انگلیسی را وارد کنید"/>
-            </div>
-            <div class="mt-2">
-              <label class="form-label">نوع</label>
-              <select [disabled]="!myForm" class="form-select" aria-label="Default select example">
-                <option selected value="text">متن</option>
-                <option value="password">کلمه عبور</option>
-                <option value="date">تاریخ</option>
-                <option value="time">زمان</option>
-                <option value="checkbox">چک باکس</option>
-                <option value="email">پست الکترونیکی</option>
-                <option value="file">فایل</option>
-              </select>
-            </div>
-
-          </li>
-        </ul>
-        <div class="card-footer">
-          <button [disabled]="!myForm" type="submit" class="btn btn-success float-end">افزودن</button>
-        </div>
-      </div>
-
-<!--      <button (click)="reset()" type="button" class="btn btn-danger mt-3 w-100">ریست</button>-->
+      <!--      <button (click)="reset()" type="button" class="btn btn-danger mt-3 w-100">ریست</button>-->
 
     </div>
 
-    <div class="flex-grow-1 px-5" *ngIf="myForm">
+    <div class="flex-grow-1 p-5 mx-3"
+         style="border: 1px solid #ddd; border-radius: 10px" *ngIf="myForm">
       <app-dynamic-form [form]="myForm.value"/>
     </div>
   </div>

@@ -26,6 +26,11 @@ export class BuildFormComponent {
   myFormCreateForm = new FormGroup({
     formTitle: new FormControl('', [Validators.required])
   })
+  myFormCreateFormControl= new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    label: new FormControl('', [Validators.required]),
+    type: new FormControl('text'),
+  })
 
   createForm() {
     this.myForm = new BehaviorSubject<IAppForm>({
@@ -39,7 +44,18 @@ export class BuildFormComponent {
       cancelBtnTitle: 'انصراف'
     })
 
-    this._formService.addForm(this.myForm?.value as IAppForm)
+    // this._formService.addForm(this.myForm?.value as IAppForm)
+  }
+
+  createFormControl() {
+    this.myForm?.subscribe((value) => {
+      value.formControls.push({
+        name: this.myFormCreateFormControl.get('name')?.value as string,
+        label: this.myFormCreateFormControl.get('label')?.value as string,
+        type: this.myFormCreateFormControl.get('type')?.value as string,
+        validators: []
+      })
+    })
   }
 
   // reset() {
