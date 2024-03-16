@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {DynamicFormComponent} from "./form/component/dynamic-form/dynamic-form.component";
+import {FormService} from "./form/service/form.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    DynamicFormComponent
+  ],
+  providers: [
+    FormService
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
