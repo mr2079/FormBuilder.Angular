@@ -58,8 +58,7 @@
             </li>
           </ul>
           <div class="card-footer">
-<!--            [disabled]="!myForm || !myFormCreateFormControl.invalid"-->
-            <button  type="submit"
+            <button [disabled]="!myForm || !myFormCreateFormControl.invalid" type="submit"
                     class="btn btn-success float-end">افزودن
             </button>
           </div>
@@ -72,7 +71,7 @@
 
     <div class="flex-grow-1 p-5 mx-3"
          style="border: 1px solid #ddd; border-radius: 10px" *ngIf="myForm">
-      <app-dynamic-form [form]="myForm.value"/>
+      <app-dynamic-form [form]="myForm.value" [edit]="true" />
     </div>
   </div>
 </div>

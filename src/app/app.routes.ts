@@ -11,6 +11,6 @@ export const routes: Routes = [
   {
     path: 'build-form',
     component: BuildFormComponent,
-    // canDeactivate: [OnBeforeDestroyGuard]
+    canDeactivate: [OnBeforeDestroyGuard]
   }
 ];

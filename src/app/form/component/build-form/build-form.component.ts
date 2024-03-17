@@ -29,7 +29,7 @@ export class BuildFormComponent {
   myFormCreateFormControl= new FormGroup({
     name: new FormControl('', [Validators.required]),
     label: new FormControl('', [Validators.required]),
-    type: new FormControl('text'),
+    type: new FormControl('text', [Validators.required]),
   })
 
   createForm() {
@@ -56,6 +56,10 @@ export class BuildFormComponent {
         validators: []
       })
     })
+  }
+
+  deleteFormControl(){
+
   }
 
   // reset() {

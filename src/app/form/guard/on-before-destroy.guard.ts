@@ -1,6 +1,6 @@
 import {BuildFormComponent} from "../component/build-form/build-form.component";
 import {CanDeactivateFn} from "@angular/router";
-import {EMPTY, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import Swal from "sweetalert2";
 import {inject} from "@angular/core";
 import {FormService} from "../service/form.service";
@@ -18,8 +18,6 @@ export const OnBeforeDestroyGuard: CanDeactivateFn<BuildFormComponent>
     confirmButtonText: 'ذخیره',
     denyButtonText: 'خروج',
   }).then((result) => {
-    // if (result.isDenied) {
-    // }
-    return true;
+    return !result.isDismissed;
   });
 }

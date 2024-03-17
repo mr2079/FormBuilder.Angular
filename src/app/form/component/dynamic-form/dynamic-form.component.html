@@ -4,39 +4,44 @@
 
   <form [formGroup]="dynamicFormGroup">
     <div class="row">
-    <ng-container *ngFor="let control of form.formControls">
+      <ng-container *ngFor="let control of form.formControls">
 
-      <div *ngIf="['text', 'email', 'password', 'number', 'date', 'time', 'file', 'number'].includes(control.type)" class="mt-4 col-12">
+        <div *ngIf="['text', 'email', 'password', 'number', 'date', 'time', 'file', 'number'].includes(control.type)"
+             class="mt-4 col-12">
 
-        <label class="form-label">{{ control.label }}</label>
-        <input class="form-control" [type]="control.type" formControlName="{{control.name}}" placeholder="{{control.placeholder}}">
+          <label class="form-label">{{ control.label }}</label>
+          <div class="d-flex">
+            <input class="form-control" [type]="control.type" formControlName="{{control.name}}"
+                   placeholder="{{control.placeholder}}">
+            <button *ngIf="edit" class="btn btn-danger" style="margin-right: .5rem">حذف</button>
+          </div>
 
-        <small class="text-danger w-100"
-               *ngIf="dynamicFormGroup.get(control.name)?.invalid && dynamicFormGroup.get(control.name)?.touched">
-          {{getValidationErrors(control)}}
-        </small>
+          <small class="text-danger w-100"
+                 *ngIf="dynamicFormGroup.get(control.name)?.invalid && dynamicFormGroup.get(control.name)?.touched">
+            {{ getValidationErrors(control) }}
+          </small>
 
-      </div>
-
-      <div *ngIf="['checkbox'].includes(control.type)" class="mt-4 col-12">
-
-        <div class="form-check">
-          <input class="form-check-input" [type]="control.type" name="{{control.name}}" value="{{control.label}}">
-          <label class="form-check-label">
-            {{control.label}}
-          </label>
         </div>
 
-        <small class="text-danger w-100"
-               *ngIf="dynamicFormGroup.get(control.name)?.invalid && dynamicFormGroup.get(control.name)?.touched">
-          {{getValidationErrors(control)}}
-        </small>
+        <div *ngIf="['checkbox'].includes(control.type)" class="mt-4 col-12">
 
-      </div>
-    </ng-container>
+          <div class="form-check">
+            <input class="form-check-input" [type]="control.type" name="{{control.name}}" value="{{control.label}}">
+            <label class="form-check-label">
+              {{ control.label }}
+            </label>
+          </div>
+
+          <small class="text-danger w-100"
+                 *ngIf="dynamicFormGroup.get(control.name)?.invalid && dynamicFormGroup.get(control.name)?.touched">
+            {{ getValidationErrors(control) }}
+          </small>
+
+        </div>
+      </ng-container>
     </div>
 
-    <hr/>
+    <hr class="mt-5"/>
 
     <div class="d-flex justify-content-center mt-4">
       <button (click)="onSubmit()" class="mx-1 btn btn-success" type="submit">{{ form.saveBtnTitle }}</button>
